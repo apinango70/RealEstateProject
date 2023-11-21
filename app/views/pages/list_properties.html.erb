@@ -1,0 +1,153 @@
+<%= render 'shared/header' %>
+
+<!-- Page Title #1 -->
+<section id="page-title" class="page-title bg-overlay bg-overlay-dark2">
+  <div class="bg-section">
+    <%= image_tag "page-titles/1.jpg", alt: "Background" %>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        <div class="title title-1 text-center">
+          <div class="title--content">
+            <div class="title--heading">
+              <h1>List Property</h1>
+            </div>
+            <ol class="breadcrumb">
+              <li><%= link_to "Home", root_path %></li>
+              <li class="active">List Property</li>
+            </ol>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #page-title end -->
+
+<!-- properties-grid -->
+<section id="properties-grid">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <!-- Widget: Property Type -->
+        <div class="widget widget-property">
+          <!-- Widget Title -->
+          <div class="widget--title">
+            <h5>Property Type</h5>
+          </div>
+          <!-- Widget Content -->
+          <div class="widget--content">
+            <ul class="list-unstyled mb-0">
+              <% @tipos_de_propiedades.each do |tipo_propiedad| %>
+                <li><a href="#"><%= tipo_propiedad.name %> <span>(<%= tipo_propiedad.total %>)</span></a></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <!-- .widget property type end -->
+
+        <!-- widget property status -->
+        <div class="widget widget-property">
+          <div class="widget--title">
+            <h5>Property Status</h5>
+          </div>
+          <div class="widget--content">
+            <ul class="list-unstyled mb-0">
+              <% @type_offers.each do |type_offer| %>
+                <li><a href="#"><%= type_offer.name %> <span>(<%= type_offer.properties.count %>)</span></a></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <!-- . widget property status end -->
+
+        <!-- Widget Property City -->
+        <div class="widget widget-property">
+          <!-- Widget Title -->
+          <div class="widget--title">
+            <h5>Property By City</h5>
+          </div>
+          <!-- Widget Content -->
+          <div class="widget--content">
+            <ul class="list-unstyled mb-0">
+              <% @cities.each do |city, count| %>
+                <li><a href="#"><%= city %> <span>(<%= count %>)</span></a></li>
+              <% end %>
+            </ul>
+          </div>
+
+        </div>
+        <!-- widget property city end -->
+      </div>
+      <!-- end widget featured property -->
+
+      <div class="col-xs-12 col-sm-12 col-md-8">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="properties-filter clearfix">
+              <div class="select--box pull-left">
+                <label>Sort by:</label>
+                <i class="fa fa-angle-up"></i>
+                <i class="fa fa-angle-down"></i>
+                <select>
+                  <option selected="" value="Default">Default Sorting</option>
+                  <option value="Larger">Newest Items</option>
+                  <option value="Larger">Oldest Items</option>
+                  <option value="Larger">Hot Items</option>
+                  <option value="Small">Highest Price</option>
+                  <option value="Medium">Lowest Price</option>
+                </select>
+              </div>
+
+              <!-- select-box -->
+              <div class="view--type pull-right">
+                <a id="switch-list" href="#" class=""><i class="fa fa-th-list"></i></a>
+                <a id="switch-grid" href="#" class="active"><i class="fa fa-th-large"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Properties Grid -->
+          <div class="properties properties-grid">
+            <% @properties.each do |property| %>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="property-item">
+                  <div class="property--img">
+                    <a href="#">
+                      <%= image_tag property.photo, class: 'img-responsive' %>
+                      <span class="property--status"><%= property.type_offer.name %></span>
+                    </a>
+                  </div>
+                  <div class="property--content">
+                    <div class="property--info">
+                      <h5 class="property--title"><%= link_to property.title, property %></h5>
+                      <p class="property--location"><%= property.address %>, <%= property.city %></p>
+                      <p class="property--price">$<%= number_with_delimiter(property.sale_or_rent_price) %></p>
+                    </div>
+                    <div class="property--features">
+                      <ul class="list-unstyled mb-0">
+                        <li><span class="feature">Beds:</span><span class="feature-num"><%= property.bedrooms %></span></li>
+                        <li><span class="feature">Baths:</span><span class="feature-num"><%= property.bathrooms %></span></li>
+                        <li><span class="feature">Area:</span><span class="feature-num"><%= property.area %></span></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <!-- Properties Grid End -->
+
+          <!-- Pagy Control -->
+          <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-50">
+            <ul>
+              <%== pagy_bootstrap_nav(@pagy) %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

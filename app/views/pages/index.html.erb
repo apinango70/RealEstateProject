@@ -1,0 +1,190 @@
+
+<%= render 'shared/header' %>
+<%= render 'shared/hero' %>
+
+<!-- properties-carousel -->
+<section id="properties-carousel" class="properties-carousel pt-90 pb-90">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="heading heading-2 text-center mb-70">
+          <h2 class="heading--title">Latest Properties</h2>
+          <p class="heading--desc">Duis aute irure dolor in reprehed in volupted velit esse dolore</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="carousel carousel-dots" data-slide="3" data-slide-rs="2" data-autoplay="true" data-nav="false" data-dots="true" data-space="25" data-loop="true" data-speed="800">
+          
+          <!-- properties list  -->
+          <% @properties.each do |property| %>
+            <div class="property-item">
+              <div class="property--img">
+                <a href="#">
+                  <%= image_tag property.photo, class: 'img-responsive' %>
+                  <span class="property--status"><%= property.type_offer.name %></span>
+                </a>
+              </div>
+              <div class="property--content">
+                <div class="property--info">
+                  <h5 class="property--title"><%= link_to property.title, property %></h5>
+                  <p class="property--location"><%= property.address %></p>
+                  <p class="property--price">$<%= number_with_delimiter(property.sale_or_rent_price) %></p>
+                </div>
+                <div class="property--features">
+                  <ul class="list-unstyled mb-0">
+                    <li><span class="feature">Beds:</span><span class="feature-num"><%= property.bedrooms %></span></li>
+                    <li><span class="feature">Baths:</span><span class="feature-num"><%= property.bathrooms %></span></li>
+                    <li><span class="feature">Area:</span><span class="feature-num"><%= number_with_delimiter(property.area) %> sq ft</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #properties-carousel  end  -->
+
+<!-- Feature -->
+<section id="feature" class="feature feature-1 text-center bg-white pb-90">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="heading heading-2 text-center mb-70">
+          <h2 class="heading--title">Simple Steps</h2>
+          <p class="heading--desc">Duis aute irure dolor in reprehed in volupted velit esse dolore</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <!-- feature Panel #1 -->
+      <div class="col-xs-12 col-sm-4 col-md-4">
+        <div class="feature-panel">
+          <div class="feature--icon">
+            <%= image_tag "features/icons/5.png", alt: "icon img" %>
+          </div>
+          <div class="feature--content">
+            <h3>Search For Real Estates</h3>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eule pariate.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- feature Panel #2 -->
+      <div class="col-xs-12 col-sm-4 col-md-4">
+        <div class="feature-panel">
+          <div class="feature--icon">
+            <%= image_tag "features/icons/6.png", alt: "icon img" %>
+          </div>
+          <div class="feature--content">
+            <h3>Select Your Favorite</h3>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eule pariate.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- feature Panel #3 -->
+      <div class="col-xs-12 col-sm-4 col-md-4">
+        <div class="feature-panel">
+          <div class="feature--icon">
+            <%= image_tag "features/icons/7.png", alt: "icon img" %>
+          </div>
+          <div class="feature--content">
+            <h3>Take Your Key</h3>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eule pariate.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- agents -->
+<section id="agents" class="agents bg-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="heading heading-2 text-center mb-70">
+          <h2 class="heading--title">Trusted Agents</h2>
+          <p class="heading--desc">Duis aute irure dolor in reprehed in volupted velit esse dolore</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <!-- agent #1 -->
+      <div class="col-xs-12 col-sm-4 col-md-4">
+        <div class="agent">
+          <div class="agent--img">
+            <%= image_tag "agents/grid/1.png", alt:"agent" %>
+            <div class="agent--details">
+              <p>Lorem ipsum dolor sit amet, consece adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore.</p>
+              <div class="agent--social-links">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-dribbble"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="agent--info">
+            <h5 class="agent--title">Steve Martin</h5>
+            <h6 class="agent--position">Buying Agent</h6>
+          </div>
+        </div>
+      </div>
+
+      <!-- agent #2 -->
+      <div class="col-xs-12 col-sm-4 col-md-4">
+        <div class="agent">
+          <div class="agent--img">
+            <%= image_tag "agents/grid/2.png", alt:"agent" %>
+            <div class="agent--details">
+              <p>Lorem ipsum dolor sit amet, consece adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore.</p>
+              <div class="agent--social-links">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-dribbble"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="agent--info">
+            <h5 class="agent--title">Mark Smith</h5>
+            <h6 class="agent--position">Selling Agent</h6>
+          </div>
+        </div>
+      </div>
+      
+      <!-- agent #3 -->
+      <div class="col-xs-12 col-sm-4 col-md-4">
+        <div class="agent">
+          <div class="agent--img">
+            <%= image_tag "agents/grid/3.png", alt:"agent" %>
+            <div class="agent--details">
+              <p>Lorem ipsum dolor sit amet, consece adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore.</p>
+              <div class="agent--social-links">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-dribbble"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="agent--info">
+            <h5 class="agent--title">Ryan Printz</h5>
+            <h6 class="agent--position">Real Estate Broker</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #agents end  -->

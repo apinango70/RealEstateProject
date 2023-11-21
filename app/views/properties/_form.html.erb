@@ -1,0 +1,177 @@
+<%= form_with(model: property) do |form| %>
+  <% if property.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+      <ul>
+        <% property.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<!-- #Add Property -->
+<section id="add-property" class="add-property">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+
+                <form class="mb-0">
+                    <div class="form-box">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <h4 class="form--title">Property Description</h4>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                  <%= form.label "Property title*", style: "display: block" %>
+                                  <%= form.text_field :title, class:"form-control", required: true %>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                  <%= form.label "Property description*", style: "display: block" %>
+                                  <%= form.text_area :description, class:"form-control", rows:"2", required: true %>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                              <%= form.label :type_property_id, style: "display: block" %>
+                              <%= form.collection_select :type_property_id, TypeProperty.all, :id, :name, { include_blank: "Select a type" } %>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                  <%= form.label :type_offer_id, style: "display: block" %>
+                                  <%= form.collection_select :type_offer_id, TypeOffer.all, :id, :name,   { include_blank: "Select an option" } %>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                  <%= form.label :bedrooms, style: "display: block" %>
+                                  <%= form.text_field :bedrooms, class:"form-control" %>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                  <%= form.label :bathrooms, style: "display: block" %>
+                                  <%= form.text_field :bathrooms, class:"form-control" %>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                  <%= form.label :floors, style: "display: block" %>
+                                  <%= form.text_field :floors, class:"form-control" %>
+                                </div>
+                            </div> 
+
+
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                  <%= form.label :garages, style: "display: block" %>
+                                  <%= form.text_field :garages, class:"form-control" %>
+                                </div>
+                            </div>
+
+ 
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                  <%= form.label :area, style: "display: block" %>
+                                  <%= form.text_field :area, class:"form-control", placeholder:"sq ft" %>
+                                </div>
+                            </div>
+ 
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                  <%= form.label "Sale or rent price*", style: "display: block" %>
+                                  <%= form.text_field :sale_or_rent_price, class:"form-control" %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features check boxes -->
+                      <div class="form-box">
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-12 col-md-12">
+                            <h4 class="form--title">Property Features</h4>
+                          </div>
+                          <% Feature.all.each do |feature| %>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                              <div class="input-checkbox">
+                                <label class="label-checkbox">
+                                  <span><%= feature.name %></span>
+                                  <%= form.check_box :feature_ids, { multiple: true }, feature.id, nil %>
+                                  <span class="check-indicator"></span>
+                                </label>
+                              </div>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                     <!-- Features check boxes end -->
+
+                     <!-- Photo active storage -->
+                      <div class="form-box">
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-12 col-md-12">
+                            <h4 class="form--title">Property Gallery</h4>
+                          </div>
+                          <div class="col-xs-12 col-sm-4 col-md-12">
+                            <% if property.photo.attached? %>
+                              <%= image_tag property.photo, class: 'mb-2', style: 'max-width: 200px;' %><br>
+                            <% end %>
+                            <div class="mb-4">
+                              <%= form.file_field :photo, class:'form-control' %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                     <!-- Photo active storage end-->
+
+                    <div class="form-box">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <h4 class="form--title">Property Location</h4>
+                            </div>
+                            <!-- .col-md-12 end -->
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                  <%= form.label :address, style: "display: block" %>
+                                  <%= form.text_field :address, class:"form-control", placeholder:"Enter your property address" %>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                  <%= form.label :city, style: "display: block" %>
+                                  <%= form.text_field :city, class:"form-control" %>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                  <%= form.label :state, style: "display: block" %>
+                                  <%= form.text_field :state, class:"form-control" %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <%= form.submit "Save Edits", class: "btn btn--primary" %>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<% end %>

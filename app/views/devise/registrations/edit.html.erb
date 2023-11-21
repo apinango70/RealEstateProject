@@ -1,0 +1,175 @@
+<%= render "shared/header" %>
+
+<!-- Page title -->
+<section id="page-title" class="page-title bg-overlay bg-overlay-dark2">
+  <div class="bg-section">
+    <%= image_tag "page-titles/1.jpg", alt: "background" %>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        <div class="title title-1 text-center">
+          <div class="title--content">
+            <div class="title--heading">
+              <h1>user Profile</h1>
+            </div>
+            <ol class="breadcrumb">
+              <li><%= link_to "Home", root_path %></li>
+              <li class="active">user Profile</li>
+            </ol>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Page title end -->
+
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= render "devise/shared/error_messages", resource: resource %>
+
+
+<section id="user-profile" class="user-profile">
+  <div class="container">
+    <div class="row">
+
+      <!-- user profile left menu-->
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <div class="edit--profile-area">
+          <ul class="edit--profile-links list-unstyled mb-0">
+            <li><%= link_to "Edit profile", edit_user_registration_path, class: 'active' %></li>
+            <li><%= link_to "My properties", pages_my_properties_path %></li>
+            <li><%= link_to "Add property", new_property_path %></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Profile photo -->
+      <div class="col-xs-12 col-sm-12 col-md-8">
+        <form class="mb-0">
+          <div class="form-box">
+            <h4 class="form--title">Profile Picture</h4>
+            <div class="upload--img-area">
+              <div class="preview--img">
+                <% if current_user.photo.attached? %>
+                  <%= image_tag current_user.photo, id: "output--img", class: "output--img" %>
+                <% else %>
+                  <!-- Aquí puedes mostrar una imagen de relleno o un mensaje indicando que no hay foto -->
+                  <%= image_tag "placeholder_image.jpg", id: "output--img", class: "output--img" %>
+                <% end %>
+              </div>
+                <div class="mb-4">
+                  <%= f.file_field :photo, class:'form-control' %>
+                </div>
+            </div>
+          </div>
+          <!-- Profile photo end -->
+
+          <!-- .form-box end -->
+          <div class="form-box">
+            <h4 class="form--title">Personal Details</h4>
+
+            <div class="form-group">
+              <label>First Name</label>
+              <%= f.text_field :firstname, autocomplete: "firstname", class:'form-control' %>
+            </div>
+             
+            <div class="form-group">
+              <label>Last Name</label>
+              <%= f.text_field :lastname, autocomplete: "lastname", class:'form-control' %>
+            </div>
+             
+            <div class="form-group">
+              <label>Email Address</label>
+              <%= f.email_field :email, autocomplete: "email", class:'form-control' %>
+            </div>
+             
+            <div class="form-group">
+              <label>Phone</label>
+              <%= f.text_field :phone, autocomplete: "phone", class:'form-control' %>
+            </div>
+             
+            <div class="form-group">
+              <label for="about-me">About Me</label>
+              <%= f.text_area :description, autocomplete: "description", class:'form-control' %>
+            </div>
+                       
+            <div class="form-group">
+              <label for="about-me">Web site</label>
+              <%= f.text_field :website, autocomplete: "website", class:'form-control' %>
+            </div>
+                       
+            <div class="form-group">
+              <label for="about-me">Agency</label>
+              <%= f.collection_select :agency_id, Agency.all, :id, :name, { include_blank: "Select a Agency" }, class:'form-select' %>
+            </div>
+
+            <div class="form-group">
+              <label for="about-me">Position</label>
+              <%= f.collection_select :position_id, Position.all, :id, :name, { include_blank: "Select a position" }, class:'form-select' %>
+            </div>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+
+             <div class="form-group">
+            <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+              <%= f.password_field :password, autocomplete: "new-password", class:'form-control' %>
+              <% if @minimum_password_length %>
+                <br />
+                <em><%= @minimum_password_length %> characters minimum</em>
+              <% end %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'form-control' %>
+            </div>
+
+
+
+
+
+          </div>
+          <!-- .form-box end -->
+          <div class="form-box">
+            <h4 class="form--title">Change Password</h4>
+               <div class="form-group">
+              <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+                <%= f.password_field :password, autocomplete: "new-password", class:'form-control' %>
+                <% if @minimum_password_length %>
+                  <br />
+                  <em><%= @minimum_password_length %> characters minimum</em>
+                <% end %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'form-control' %>
+              </div>
+          </div>
+
+          <div class="form-box">
+              <h4 class="form--title">Save changes</h4>
+              
+              <div class="form-group">
+                <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+                <%= f.password_field :current_password, autocomplete: "current-password", class:'form-control' %>
+              </div>
+            <div class="form-box">
+              <%= f.submit "Update", class:"btn btn--primary" %>
+              <% end %>
+              <hr>
+              <h3>Cancel my account</h3>
+
+              <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger" %></div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

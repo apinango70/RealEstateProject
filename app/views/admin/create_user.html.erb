@@ -1,0 +1,126 @@
+
+<%= render 'shared/header' %>
+
+<!-- Page Title -->
+<section id="page-title" class="page-title bg-overlay bg-overlay-dark2">
+  <div class="bg-section">
+    <%= image_tag "page-titles/1.jpg", alt:"Background" %>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        <div class="title title-1 text-center">
+          <div class="title--content">
+            <div class="title--heading">
+              <h1>Create new user</h1>
+            </div>
+            <ol class="breadcrumb">
+              <li><%= link_to "home", root_path %></li>
+              <li class="active">create new user</li>
+            </ol>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <!-- .title end -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- page title end -->
+
+<%= form_with(model: @user, url: admin_create_path, method: :post) do |f| %>
+<%= f.fields_for :user do |user_fields| %>
+
+
+<section id="user-profile" class="user-profile">
+  <div class="container">
+    <div class="row">
+
+      <!-- user profile left menu-->
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <div class="edit--profile-area">
+          <ul class="edit--profile-links list-unstyled mb-0">
+            <li><%= link_to "Create new user", create_user_path, class: 'active' %></li>
+            <li><%= link_to "Edit USer", edit_user_path %></li>
+            <li><%= link_to "Show users list", show_user_path %></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Profile photo -->
+      <div class="col-xs-12 col-sm-12 col-md-8">
+        <form class="mb-0">
+          <div class="form-box">
+            <h4 class="form--title">Profile Picture</h4>
+            <div class="upload--img-area">
+              <div class="preview--img">
+                <% if current_user.photo.attached? %>
+                  <%= image_tag current_user.photo, id: "output--img", class: "output--img" %>
+                <% else %>
+                  <!-- Aquí puedes mostrar una imagen de relleno o un mensaje indicando que no hay foto -->
+                  <%= image_tag "placeholder_image.jpg", id: "output--img", class: "output--img" %>
+                <% end %>
+              </div>
+                <div class="mb-4">
+                  <%= f.file_field :photo, class:'form-control' %>
+                </div>
+            </div>
+          </div>
+          <!-- Profile photo end -->
+
+          <!-- Personal details -->
+          <div class="form-box">
+            <h4 class="form--title">Personal Details</h4>
+
+                <div class="form-group">                  
+                  <%= user_fields.label :firstname %><br />
+                  <%= user_fields.text_field :firstname, autocomplete: "firstname", class:'form-control'  %>
+                </div>
+
+                <div class="form-group">                  
+                  <%= user_fields.label :lastname %><br />
+                  <%= user_fields.text_field :lastname, autocomplete: "lastname", class:'form-control'  %>
+                </div>
+
+                <div class="form-group">                   
+                  <%= user_fields.label :email %><br />
+                  <%= user_fields.email_field :email, autocomplete: "email", class:'form-control'  %>
+                </div>
+                <div class="form-group">     
+                  <%= user_fields.label :role %><br />
+                  <%= user_fields.select :role, User.roles.keys.map { |w| [w.humanize, w] }, include_blank: "Select a role", class:'form-select' %>
+                </div>
+
+                <div class="form-group">
+                  <label>Agency</label>
+                  <%= user_fields.collection_select :agency_id, Agency.all, :id, :name, { include_blank: "Select a Agency" }, class:'form-select' %>
+                </div>
+
+                <div class="form-group">
+                  <label>Position</label>
+                  <%= user_fields.collection_select :position_id, Position.all, :id, :name, { include_blank: "Select a position" }, class:'form-select' %>
+                </div>
+
+                <div class="form-group">
+                  <%= user_fields.label :password %>
+                  <% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %> characters minimum)</em>
+                  <% end %><br />
+                  <%= user_fields.password_field :password, autocomplete: "new-password", class:'form-control' %>
+                </div>
+        
+                <div class="form-group">
+                  <%= user_fields.label :password_confirmation %><br />
+                  <%= user_fields.password_field :password_confirmation, autocomplete: "new-password", class:'form-control' %>
+                </div>
+
+                <% end %>
+                <div class="form-group">
+                  <%= f.submit "Create user", class:"btn btn-success" %>
+                </div>
+              <% end %>
+         </form>
+      </div>
+    </div>
+  </div>
+</section>

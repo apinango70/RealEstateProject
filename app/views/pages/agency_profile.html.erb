@@ -1,0 +1,233 @@
+<%= render 'shared/header' %>
+
+<!-- Page Title #1 -->
+<section id="page-title" class="page-title bg-overlay bg-overlay-dark2">
+  <div class="bg-section">
+    <%= image_tag "page-titles/1.jpg", alt:"Background" %>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        <div class="title title-1 text-center">
+          <div class="title--content">
+            <div class="title--heading">
+              <h1>Agency Profile</h1>
+            </div>
+            <ol class="breadcrumb">
+              <li><%= link_to "Home", root_path %></li>
+              <li class="active">Agency Profile</li>
+            </ol>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #page-title end -->
+
+
+<!-- agency-profile -->
+<section id="agency-profile" class="agency-profile bg-white pb-70">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-5 col-md-5">
+        <div class="agency--profile-img">
+          <!--foto de la agencia-->
+          <%= image_tag @agency.photo, class: "img-responsive" if @agency.photo.attached? %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-7 col-md-5 col-md-offset-1">
+        <div class="agency--profile-content">
+
+          <div class="agency--info">
+            <h5 class="agency--title"><%= @agency.name %></h5>
+            <p class="agency--location"><i class="fa fa-map-marker"></i><%= @agency.address %></p>
+          </div>
+          <div class="agency--profile-contact">
+            <ul class="list-unstyled mb-30 clearfix">
+              <li><span>Phone:</span><%= @agency.phone %></li>
+              <li><span>Properties Listed:</span><%= @agency.properties.count %> </li>
+              <li><span>Email:</span><%= @agency.email %></li>
+              <li><span>Website:</span><%= @agency.website %></li>
+            </ul>
+          </div>
+          <div class="agency--social-links">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-google-plus"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="agency--profile-details">
+          <p><%= @agency.description %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #agency-profile  end  -->
+
+
+<!-- properties-carousel -->
+<section id="properties-carousel" class="properties-carousel">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="heading heading-2  mb-70">
+          <h2 class="heading--title">Properties List</h2>
+        </div>
+        <!-- .heading-title end -->
+      </div>
+      <!-- .col-md-12 end -->
+    </div>
+    <!-- .row end -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="carousel carousel-dots" data-slide="3" data-slide-rs="2" data-autoplay="false" data-nav="false" data-dots="true" data-space="25" data-loop="true" data-speed="800">
+
+
+          <!-- .property-item #1 -->
+          <% @properties.each do |property| %>
+          <div class="property-item">
+            <div class="property--img">
+              <a href="#">
+                <%= image_tag property.photo, class: 'img-responsive', alt:"property image" %>
+                <span class="property--status"><%= property.type_offer.name %></span>
+              </a>
+            </div>
+            <div class="property--content">
+              <div class="property--info">
+                <h5 class="property--title"><%= link_to property.title, property %></h5>
+                <p class="property--location"><%= property.address %>, <%= property.city %></p>
+                <p class="property--price">$<%= number_with_delimiter(property.sale_or_rent_price) %></p>
+              </div>
+              <!-- .property-info end -->
+              <div class="property--features">
+                <ul class="list-unstyled mb-0">
+                  <li><span class="feature">Beds:</span><span class="feature-num"><%= property.bedrooms %></span></li>
+                  <li><span class="feature">Baths:</span><span class="feature-num"><%= property.bathrooms %></span></li>
+                  <li><span class="feature">Area:</span><span class="feature-num"><%= property.area %> sq ft</span></li>
+                </ul>
+              </div>
+              <!-- .property-features end -->
+            </div>
+          </div>
+          <% end %>
+          <!-- .property item end -->
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #properties-carousel  end  -->
+
+
+<!-- #agents -->
+<section id="agents" class="agents bg-white pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="heading mb-70">
+          <h2 class="heading--title">Our Agents</h2>
+        </div>
+        <!-- .heading end -->
+      </div>
+      <!-- .col-md-12 end -->
+    </div>
+    <!-- .row end -->
+    <div class="row mb-100">
+
+      <!-- agents -->
+<% @agency.users.each do |user| %>
+  <% if user.agent? %>
+    <div class="col-xs-12 col-sm-4 col-md-4">
+      <div class="agent">
+        <div class="agent--img">
+          <%= image_tag user.photo, alt: "Agent Image" if user.photo.attached? %>
+          <div class="agent--details">
+            <p><%= user.description %></p>
+            <div class="agent--social-links">
+              <a href="#"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#"><i class="fa-brands fa-twitter"></i></a>
+              <a href="#"><i class="fa-brands fa-dribbble"></i></a>
+              <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="agent--info">
+          <h5 class="agent--title"><%= link_to "#{user.firstname} #{user.lastname}", agent_profile_path(user) %></h5>
+          <h6 class="agent--position"><%= user.position.name %></h6>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+
+      <!-- Agents end -->
+
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <hr class="m-0">
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #agents end  -->
+
+
+<!-- Contact #2 -->
+<section id="contact2" class="contact contact-2 bg-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="heading heading-2 mb-50">
+          <h2 class="heading--title">Contact Us</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <form class="mb-0">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4">
+              <div class="form-group">
+                <label for="contact-name">Your Name*</label>
+                <input type="text" class="form-control" name="contact-name" id="contact-name" required>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4">
+              <div class="form-group">
+                <label for="contact-email">Email Address*</label>
+                <input type="email" class="form-control" name="contact-email" id="contact-email" required>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4">
+              <div class="form-group">
+                <label for="phone-number">Phone Number</label>
+                <input type="text" class="form-control" name="phone-number" id="phone-number" placeholder="(optional)">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <div class="form-group">
+                <label for="message">Message*</label>
+                <textarea class="form-control" name="contact-message" id="message" rows="2" required></textarea>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <input type="submit" value="Send Message" name="submit" class="btn btn--primary">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #contact  end -->

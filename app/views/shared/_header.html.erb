@@ -1,0 +1,99 @@
+<header id="navbar-spy" class="header header-1 header-transparent header-fixed">
+  <nav id="primary-menu" class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+          
+          <%= link_to root_path,class:"logo" do %>
+            <%= image_tag "logo/logo-light.png", class:"logo-light" , alt:"Land logo"%>
+            <%= image_tag "logo/logo-dark.png", class:"logo-dark", alt:"Land logo"%>
+          <% end %>
+
+      </div>
+
+      <!-- Barra de navegación -->
+      <div class="collapse navbar-collapse pull-right" id="navbar-collapse-1">
+        <ul class="nav navbar-nav nav-pos-center navbar-left">
+          <!-- Home Menu -->
+          <li class="nav-item"><%= link_to "Home", root_path, class: 'nav-link' %></li>
+          <!-- Home menu end -->
+
+          <!-- Pages Menu-->
+          <li class="has-dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Pages</a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Agencies list", pages_agency_list_path %></li>
+              <li><%= link_to "Agents list", pages_agents_list_path %></li>
+            </ul>
+          </li>
+          <!-- pages menu end -->
+
+          <!-- Profile Menu-->
+          <li class="has-dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Profile</a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Edit profile", edit_user_registration_path %></li>
+              <li><%= link_to "My properties", pages_my_properties_path %></li>
+            </ul>
+          </li>
+          <!-- profile menu end -->
+          
+          <!-- Users Menu-->
+          <li class="has-dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Users</a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Create user', create_user_path, class: 'nav-link' %></li>
+              <li><%= link_to 'Edit Users', edit_user_path, class: 'nav-link' %></li>
+              <li><%= link_to 'List all users', show_user_path, class: 'nav-link' %></li>
+            </ul>
+          </li>
+          <!-- users menu end -->
+
+          <!-- Properties Menu-->
+          <li class="has-dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Properties</a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "list properties", list_properties_path %></li>
+              
+              <li><%= link_to "add properties", new_path %></li>
+            </ul>
+          </li>
+          <!-- Properties menu end -->
+
+          <li><%= link_to "contact", pages_contact_path %></li>
+        </ul>
+        <!-- Module Signup  -->
+
+          <% if user_signed_in? %>
+
+            <div class="module module-login pull-left">
+              <%= content_tag :span, "Hi: #{current_user.firstname} #{current_user.lastname} | Role: #{current_user.role}", class: 'btn-popup' %>
+            </div>
+
+
+            <div class="module module-property pull-left">
+                <%= button_to 'Log out', destroy_user_session_path, class: 'btn btn-outline-success', method: :delete %>
+            </div>
+
+          <% else %>
+
+            <div class="module module-login pull-left">
+              <%= link_to "Login", new_user_session_path, class: 'btn-popup' %>
+            </div>
+          
+            <div class="module module-property pull-left">
+                <%= link_to "Sign Up", new_user_registration_path, class: 'btn' %>
+            </div>
+
+          <% end %> 
+      </div>
+    </div>
+  </nav>
+
+</header>

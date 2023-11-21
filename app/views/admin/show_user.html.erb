@@ -1,0 +1,59 @@
+<%= render 'shared/header' %>
+
+<!-- Page Title #1 -->
+<section id="page-title" class="page-title bg-overlay bg-overlay-dark2">
+  <div class="bg-section">
+    <%= image_tag "page-titles/1.jpg" %>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        <div class="title title-1 text-center">
+          <div class="title--content">
+            <div class="title--heading">
+              <h1>Users list</h1>
+            </div>
+            <ol class="breadcrumb">
+              <li><%= link_to "Home", root_path %></li>
+              <li class="active">Users list</li>
+            </ol>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #page-title end -->
+
+
+<div class="container">
+  <h1 class="mt-5 mb-4">Lista de Usuarios</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Email</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Rol</th>
+        <th scope="col">Actions</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.firstname %></td>
+          <td><%= user.lastname %></td>
+          <td><%= user.role %></td>
+          <td>
+              <%= button_to 'Delete', destroy_user_path(user), method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'btn btn-danger btn-sm' %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

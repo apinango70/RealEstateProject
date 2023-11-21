@@ -1,0 +1,94 @@
+<%= render 'shared/header' %>
+
+<!-- Page Title #1 -->
+<section id="page-title" class="page-title bg-overlay bg-overlay-dark2">
+  <div class="bg-section">
+    <%= image_tag "page-titles/1.jpg" %>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        <div class="title title-1 text-center">
+          <div class="title--content">
+            <div class="title--heading">
+              <h1>Agency List</h1>
+            </div>
+            <ol class="breadcrumb">
+              <li><%= link_to "Home", root_path %></li>
+              <li class="active">Agency List</li>
+            </ol>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #page-title end -->
+
+<!-- agency-list -->
+<section id="agency-list" class="agency-list">
+  <div class="container">
+    <div class="row mb-50">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <!-- agency item #1 -->
+        <% @agencies.each do |agency| %>
+        <div class="agency-item">
+          <div class="agency--img">
+            <%= image_tag url_for(agency.photo), class:"img-responsive"  if agency.photo.attached?%>
+          </div>
+          <!-- .agency-img end -->
+          <div class="agency--content">
+            <div class="clearfix mb-30">
+              <div class="pull-left">
+                <h5 class="agency--title"><%= link_to agency.name, agency_profile_path(agency) %></h5>
+                <span class="agency--location"><i class="fa fa-map-marker"></i><%= agency.address %></span>
+              </div>
+              <div class="pull-right">
+                <div class="agency--social-links">
+                  <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                  <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                  <a href="#"><i class="fa-brands fa-google-plus"></i></a>
+                  <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                  <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+                </div>
+                <span class="Properties--number"><%= agency.properties.count %> Property</span>
+              </div>
+            </div>
+            <div class="agency--details">
+              <p><%= agency.description %></p>
+            </div>
+            <div class="agency--contact">
+              <ul class="list-unstyled mb-0 clearfix">
+                <li><i class="fa fa-phone"></i><%= agency.phone %></li>
+                <li><i class="fa fa-envelope-o"></i><%= agency.email %></li>
+                <li><i class="fa fa-laptop"></i><%= agency.website %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- .agency-item end -->
+        <% end %>
+      </div>
+      <!-- .col-md-12 end -->
+    </div>
+    <!-- .row end -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 clearfix text--center">
+        <ul class="pagination">
+          <li class="active"><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">...</a></li>
+          <li>
+            <a href="#" aria-label="Next">
+              <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- .col-md-12 end -->
+    </div>
+    <!-- .row end -->
+  </div>
+</section>

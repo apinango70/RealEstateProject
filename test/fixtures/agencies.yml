@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: agencies
+#
+#  id          :bigint           not null, primary key
+#  name        :string
+#  description :string
+#  address     :string
+#  phone       :string
+#  email       :string
+#  website     :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+one:
+  name: MyString
+  description: MyString
+  address: MyString
+  phone: MyString
+  email: MyString
+  website: MyString
+
+two:
+  name: MyString
+  description: MyString
+  address: MyString
+  phone: MyString
+  email: MyString
+  website: MyString

@@ -1,0 +1,110 @@
+<%= render "shared/header" %>
+
+<!-- hero section -->
+<section id="page-title" class="page-title bg-overlay bg-overlay-dark2">
+  <div class="bg-section">
+    <%= image_tag "page-titles/1.jpg", alt: "background" %>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        <div class="title title-1 text-center">
+          <div class="title--content">
+            <div class="title--heading">
+              <h1>user Profile</h1>
+            </div>
+            <ol class="breadcrumb">
+              <li><%= link_to "Home", root_path %></li>
+              <li class="active">user Profile</li>
+            </ol>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Hero section end -->
+
+<section id="user-profile" class="user-profile">
+  <div class="container">
+    <div class="row">
+
+      <!-- user profile left menu-->
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <div class="edit--profile-area">
+          <ul class="edit--profile-links list-unstyled mb-0">
+            <li><%= link_to "Edit profile", pages_user_profile_path, class: 'active' %></li>
+            <li><%= link_to "My properties", pages_my_properties_path %></li>
+            <li><%= link_to "Add property", new_property_path %></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Profile photo -->
+      <div class="col-xs-12 col-sm-12 col-md-8">
+        <form class="mb-0">
+          <div class="form-box">
+            <h4 class="form--title">Profile Picture</h4>
+            <div class="upload--img-area">
+              <div class="preview--img">
+                <img src="#" id="output--img" class="output--img">
+              </div>
+              <a class="btn btn--primary btn-file ml-30">Upload
+                <input type="file" hidden>
+                <input type="file" accept="image/*" onchange="loadFile(event)">
+              </a>
+            </div>
+          </div>
+          <!-- Profile photo end -->
+          
+          <!-- .form-box end -->
+          <div class="form-box">
+            <h4 class="form--title">Personal Details</h4>
+            <div class="form-group">
+              <label for="first-name">First Name</label>
+              <input type="text" class="form-control" name="first-name" id="first-name">
+            </div>
+            <!-- .form-group end -->
+            <div class="form-group">
+              <label for="last-name">Last Name</label>
+              <input type="text" class="form-control" name="last-name" id="last-name">
+            </div>
+            <!-- .form-group end -->
+            <div class="form-group">
+              <label for="email-address">Email Address</label>
+              <input type="email" class="form-control" name="email-address" id="email-address">
+            </div>
+            <!-- .form-group end -->
+            <div class="form-group">
+              <label for="phone-number">Phone</label>
+              <input type="text" class="form-control" name="phone-number" id="phone-number">
+            </div>
+            <!-- .form-group end -->
+            <div class="form-group">
+              <label for="about-me">About Me</label>
+              <textarea class="form-control" name="about-me" id="about-me" rows="2"></textarea>
+            </div>
+            <!-- .form-group end -->
+          </div>
+          <!-- .form-box end -->
+          <div class="form-box">
+            <h4 class="form--title">Change Password</h4>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password" id="password">
+            </div>
+            <!-- .form-group end -->
+            <div class="form-group">
+              <label for="confirm-password">Confirm Password</label>
+              <input type="password" class="form-control" name="confirm-password" id="confirm-password">
+            </div>
+            <!-- .form-group end -->
+          </div>
+          <!-- .form-box end -->
+          <input type="submit" value="Save Edits" name="submit" class="btn btn--primary">
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

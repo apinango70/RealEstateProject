@@ -1,0 +1,51 @@
+<%= render 'shared/header' %>
+
+<!-- Page Title #1 -->
+<section id="page-title" class="page-title bg-overlay bg-overlay-dark2">
+  <div class="bg-section">
+    <%= image_tag "page-titles/1.jpg" %>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        <div class="title title-1 text-center">
+          <div class="title--content">
+            <div class="title--heading">
+              <h1>Edit users</h1>
+            </div>
+            <ol class="breadcrumb">
+              <li><%= link_to "Home", root_path %></li>
+              <li class="active">Edit users</li>
+            </ol>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #page-title end -->
+<!--Listar todos los user y poder editar sus campos-->
+
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-10 col-md-6 col-sm-6">
+      <div class="card shadow">
+        <div class="card-title text-center border-bottom">
+          <h2 class="p-3">Edit user</h2>
+          </div>
+          <div class="card-body">
+            <form>
+              <% @users.each do |user| %>
+                <%= form_for(user, url: admin_path(user), remote: true, method: :patch) do |f| %>
+                  <p><%= f.text_field :email %> - <%= f.text_field :firstname %> - <%= f.text_field :lastname %> - <%= f.select(:role, User.roles.keys.map { |w| [w.humanize, w] }) %> - <%= f.submit "Update", class: "btn btn-success" %></p>
+                <% end %>
+              <% end %>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>

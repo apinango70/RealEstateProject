@@ -1,0 +1,352 @@
+<div id="<%= dom_id property %>">
+<%= render 'shared/header' %>
+<!-- Page Title -->
+<section id="page-title" class="page-title bg-overlay bg-overlay-dark2">
+  <div class="bg-section">
+    <%= image_tag "page-titles/1.jpg", alt:"Background" %>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        <div class="title title-1 text-center">
+          <div class="title--content">
+            <div class="title--heading">
+              <h1>Single Property</h1>
+            </div>
+            <ol class="breadcrumb">
+              <li><%= link_to "Home", root_path %></li>
+              <li class="active">Single Property</li>
+            </ol>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- property single gallery -->
+<section id="property-single-gallery" class="property-single-gallery">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="property-single-gallery-info">
+          <div class="property--info clearfix">
+            <div class="pull-left">
+              <h5 class="property--title"><%= property.title %></h5>
+              <p class="property--location"><i class="fa fa-map-marker"></i><%= property.address %>, <%= property.city %> - <%= property.state %></p>
+            </div>
+            <div class="pull-right">
+              <span class="property--status"><%= property.type_offer.name %></span>
+              <p class="property--price">$<%= number_with_delimiter(property.sale_or_rent_price) %></p>
+            </div>
+          </div>
+          <div class="property--meta clearfix">
+            <div class="pull-left">
+              <ul class="list-unstyled list-inline mb-0">
+                <li>
+                  Property ID:<span class="value"><%= property.id %></span>
+                </li>
+              </ul>
+            </div>
+            <div class="pull-right">
+              <div class="property--meta-share">
+                <span class="share--title">share</span>
+                <a href="#" class="twitter"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="google-plus"><i class="fa-brands fa-google-plus"></i></a>
+                <a href="#" class="pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-8">
+        <div class="property-single-carousel inner-box">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <div class="heading">
+                <h2 class="heading--title">Gallery</h2>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <div class="property-single-carousel-content">
+                <div class="carousel carousel-thumbs slider-navs" data-slide="1" data-slide-res="1" data-autoplay="true" data-thumbs="true" data-nav="true" data-dots="false" data-space="30" data-loop="true" data-speed="800" data-slider-id="1">
+                  <%= image_tag property.photo %>
+                  <%= image_tag "properties/slider/2.jpg" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="property-single-desc inner-box">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <div class="heading">
+                <h2 class="heading--title">Description</h2>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4">
+              <div class="feature-panel">
+                <div class="feature--img">
+                  <%= image_tag "property-single/features/1.png", alt:"icon" %>
+                </div>
+                <div class="feature--content">
+                  <h5>Area:</h5>
+                  <p><%= number_with_delimiter(property.area) %> sq ft</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- feature-panel #2 -->
+            <div class="col-xs-6 col-sm-4 col-md-4">
+              <div class="feature-panel">
+                <div class="feature--img">
+                  <%= image_tag "property-single/features/2.png", alt:"icon" %>
+                </div>
+                <div class="feature--content">
+                  <h5>Beds:</h5>
+                  <p><%= property.bedrooms %> Bedrooms</p>
+                </div>
+              </div>
+            </div>
+            <!-- feature-panel end -->
+
+            <!-- feature-panel #3 -->
+            <div class="col-xs-6 col-sm-4 col-md-4">
+              <div class="feature-panel">
+                <div class="feature--img">
+                  <%= image_tag "property-single/features/3.png", alt:"icon" %>
+                </div>
+                <div class="feature--content">
+                  <h5>Baths:</h5>
+                  <p><%= property.bathrooms %> Bathrooms</p>
+                </div>
+              </div>
+            </div>
+            <!-- feature-panel end -->
+
+            <!-- feature-panel #5 -->
+            <div class="col-xs-6 col-sm-4 col-md-4">
+              <div class="feature-panel">
+                <div class="feature--img">
+                  <%= image_tag "property-single/features/5.png", alt:"icon" %>
+                </div>
+                <div class="feature--content">
+                  <h5>Floors:</h5>
+                  <p><%= property.floors %> Floors</p>
+                </div>
+              </div>
+            </div>
+            <!-- feature-panel end -->
+
+            <!-- feature-panel #6 -->
+            <div class="col-xs-6 col-sm-4 col-md-4">
+              <div class="feature-panel">
+                <div class="feature--img">
+                  <%= image_tag "property-single/features/6.png", alt:"icon" %>
+                </div>
+                <div class="feature--content">
+                  <h5>Garage:</h5>
+                  <p><%= property.garages %> Garages</p>
+                </div>
+              </div>
+            </div>
+            <!-- feature-panel end -->
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <div class="property--details">
+                <p><%= property.description %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- .property-single-desc end -->
+
+
+        <div class="property-single-features inner-box">
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="heading">
+            <h2 class="heading--title">Features</h2>
+            </div>
+          </div>
+          <!-- Recorro todas las features asociadas a esta property y las muestro-->
+          <% property.features.each do |feature| %>
+            <div class="col-xs-6 col-sm-4 col-md-4">
+            <div class="feature-item">
+              <p><%= feature.name %></p>
+            </div>
+            </div>
+          <% end %>
+          </div>
+          <!-- .row end -->
+        </div>
+        <!-- .property-single-features end -->
+
+
+        <div class="property-single-location inner-box">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <div>
+              <%= link_to "Edit this property", edit_property_path(property) %> |
+              <%= link_to "Back to properties", list_properties_path %>
+
+              <%= button_to "Destroy this property", property, method: :delete %>>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4">
+
+        <!-- widget property agent -->
+        <div class="widget widget-property-agent">
+          <div class="widget--title">
+            <h5>About Agent</h5>
+          </div>
+          <div class="widget--content">
+
+              <div class="agent--img">
+
+                <% if property.user && property.user.photo && property.user.photo.attached? %>
+                  <%= image_tag property.user.photo, alt: "agent", class: "img-responsive" %>
+                <% else %>
+                  No photo available
+                <% end %>
+              </div>
+              <div class="agent--info">
+                <h5 class="agent--title">
+                  <%= link_to "#{property.user.firstname} #{property.user.lastname}", agent_profile_path(property.user) %>
+                </h5>
+              </div>
+
+
+            <div class="agent--contact">
+              <ul class="list-unstyled">
+                <li><i class="fa fa-phone"></i><%= property.user.phone%></li>
+                <li><i class="fa fa-envelope-o"></i><%= property.user.email%></li>
+                <li><i class="fa fa-link"></i><%= property.user.website%></li>
+              </ul>
+            </div>
+            <div class="agent--social-links">
+              <a href="#"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#"><i class="fa-brands fa-twitter"></i></a>
+              <a href="#"><i class="fa-brands fa-google-plus"></i></a>
+              <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- . widget property agent end -->
+
+        <!-- widget request -->
+        <div class="widget widget-request">
+          <div class="widget--title">
+            <h5>Request a Showing</h5>
+          </div>
+          <div class="widget--content">
+            <form class="mb-0">
+              <div class="form-group">
+                <label for="contact-name">Your Name*</label>
+                <input type="text" class="form-control" name="contact-name" id="contact-name" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-email">Email Address*</label>
+                <input type="email" class="form-control" name="contact-email" id="contact-email" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-phone">Phone Number</label>
+                <input type="text" class="form-control" name="contact-phone" id="contact-phone" placeholder="(optional)">
+              </div>
+              <div class="form-group">
+                <label for="message">Message*</label>
+                <textarea class="form-control" name="contact-message" id="message" rows="2" placeholder="(optional)"></textarea>
+              </div>
+              <input type="submit" value="Send Request" name="submit" class="btn btn--primary btn--block">
+            </form>
+          </div>
+        </div>
+
+        <!-- widget mortgage calculator -->
+        <div class="widget widget-mortgage-calculator">
+          <div class="widget--title">
+            <h5>Mortage Calculator</h5>
+          </div>
+          <div class="widget--content">
+            <form class="mb-0">
+              <div class="form-group">
+                <label for="sale-price">Sale Price</label>
+                <input type="text" class="form-control" name="sale-price" id="sale-price" placeholder="$">
+              </div>
+              <div class="form-group">
+                <label for="down-payment">Down Payment</label>
+                <input type="text" class="form-control" name="down-payment" id="down-payment" placeholder="$">
+              </div>
+              <div class="form-group">
+                <label for="term">Term</label>
+                <input type="text" class="form-control" name="term" id="term" placeholder="years">
+              </div>
+              <div class="form-group">
+                <label for="interest-rate">Interest Rate</label>
+                <input type="text" class="form-control" name="interest-rate" id="interest-rate" placeholder="%">
+              </div>
+              <input type="submit" value="Calculate" name="submit" class="btn btn--primary btn--block">
+            </form>
+          </div>
+        </div>
+        <!-- . widget mortgage calculator end -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #property-single end -->
+
+
+<!-- properties-carousel -->
+<section id="properties-carousel" class="properties-carousel pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="heading heading-2  mb-70">
+          <h2 class="heading--title">Similar Properties</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="carousel carousel-dots" data-slide="3" data-slide-rs="1" data-autoplay="true" data-nav="false" data-dots="true" data-space="25" data-loop="true" data-speed="800">
+
+          <!-- .property-item #1 -->
+          <% @properties.each do |property| %>
+            <div class="property-item">
+              <div class="property--img">
+                <a href="#">
+                  <%= image_tag property.photo, class: 'img-responsive' %>
+                  <span class="property--status"><%= property.type_offer.name %></span>
+                </a>
+              </div>
+              <div class="property--content">
+                <div class="property--info">
+                  <h5 class="property--title"><%= link_to property.title, property %></h5>
+                  <p class="property--location"><%= property.address %></p>
+                  <p class="property--price">$<%= number_with_delimiter(property.sale_or_rent_price) %></p>
+                </div>
+                <div class="property--features">
+                  <ul class="list-unstyled mb-0">
+                    <li><span class="feature">Beds:</span><span class="feature-num"><%= property.bedrooms %></span></li>
+                    <li><span class="feature">Baths:</span><span class="feature-num"><%= property.bathrooms %></span></li>
+                    <li><span class="feature">Area:</span><span class="feature-num"><%= number_with_delimiter(property.area) %> sq ft</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <!-- .property item end -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
