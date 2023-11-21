@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -12,13 +13,32 @@
   </head>
   <body>
     <div id="wrapper" class="wrapper clearfix">
-      
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %> 
+
+    <% if notice %>
+      <script>
+        function sweetNotice() {
+          Swal.fire({
+            icon: 'success',
+            title: '<%= notice %>',
+          });
+        }
+        // Muestra el mensaje de exito
+        sweetNotice();
+      </script>
+    <% end %>
+
+    <% if alert %>
+        <script>
+        function sweetAlert() {
+          Swal.fire({
+            icon: 'error',
+            title: '<%= alert %>',
+          });
+        }
+        // Muestra el mensaje de error
+        sweetAlert();
+      </script>
+    <% end %>
 
       <%= yield %>
       <%= render 'shared/cta_section' %>
