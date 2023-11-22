@@ -75,8 +75,13 @@
               <div class="property-single-carousel-content">
                 <div class="carousel carousel-thumbs slider-navs" data-slide="1" data-slide-res="1" data-autoplay="true" data-thumbs="true" data-nav="true" data-dots="false" data-space="30" data-loop="true" data-speed="800" data-slider-id="1">
 
-                  <% @property.images.each do |image| %>
-                    <%= image_tag image.firs, class: 'img-responsive' %>
+                  <% if property.images.attached? %>
+                    <% @property.images.each do |image| %>
+                      <%= image_tag image, class: 'img-responsive' %>
+                    <% end %>
+                  <% else %>
+                    <!-- Manejo si no hay imágenes adjuntas -->
+                    <p>No hay imágenes adjuntas para esta propiedad.</p>
                   <% end %>
 
                 </div>
@@ -325,7 +330,16 @@
             <div class="property-item">
               <div class="property--img">
                 <a href="#">
-                  <%= image_tag property.photo, class: 'img-responsive' %>
+
+                  <% if property.images.attached? %>
+                    <% @property.images.each do |image| %>
+                      <%= image_tag image.firs, class: 'img-responsive' %>
+                    <% end %>
+                  <% else %>
+                    <!-- Manejo si no hay imágenes adjuntas -->
+                    <p>No hay imágenes adjuntas para esta propiedad.</p>
+                  <% end %>
+
                   <span class="property--status"><%= property.type_offer.name %></span>
                 </a>
               </div>
