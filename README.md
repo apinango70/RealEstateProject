@@ -13,13 +13,13 @@ Estas instrucciones te guiarán para obtener una copia de este proyecto en funci
 Para obtener una copia local en funcionamiento, sigue estos pasos.
 
 ```bash
-git clone https://github.com/apinango70/RealStateProject
+git clone https://github.com/apinango70/RealEstateProject
 ```
 
 Ingresa a la carpeta del proyecto
 
 ```bash
-cd RealStateProject
+cd RealEstateProject
 ```
 
 Con estos simples pasos ya estas listo para comenzar a desarrollar.
