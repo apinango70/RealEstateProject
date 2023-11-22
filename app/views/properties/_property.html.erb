@@ -223,6 +223,7 @@
                 <% else %>
                   No photo available
                 <% end %>
+
               </div>
               <div class="agent--info">
                 <h5 class="agent--title">
@@ -332,8 +333,10 @@
                 <a href="#">
 
                   <% if property.images.attached? %>
-                    <% @property.images.each do |image| %>
-                      <%= image_tag image.firs, class: 'img-responsive' %>
+                    <% property.images.each_with_index do |image, index| %>
+                      <% if index.zero? %>
+                        <%= image_tag image, class: 'img-responsive' %>
+                      <% end %>
                     <% end %>
                   <% else %>
                     <!-- Manejo si no hay imágenes adjuntas -->
