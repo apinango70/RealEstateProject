@@ -116,7 +116,14 @@
                 <div class="property-item">
                   <div class="property--img">
                     <a href="#">
-                      <%= image_tag property.photo, class: 'img-responsive' %>
+
+                     <% if property.images.attached? %>
+                        <%= image_tag property.images.first, class: 'img-responsive' %>
+                      <% else %>
+                        <!-- Manejo si no hay imágenes adjuntas -->
+                        <p>No hay imágenes adjuntas para esta propiedad.</p>
+                      <% end %>
+
                       <span class="property--status"><%= property.type_offer.name %></span>
                     </a>
                   </div>

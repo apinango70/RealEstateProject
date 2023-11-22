@@ -16,13 +16,24 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="carousel carousel-dots" data-slide="3" data-slide-rs="2" data-autoplay="true" data-nav="false" data-dots="true" data-space="25" data-loop="true" data-speed="800">
-          
+
           <!-- properties list  -->
           <% @properties.each do |property| %>
             <div class="property-item">
               <div class="property--img">
                 <a href="#">
-                  <%= image_tag property.photo, class: 'img-responsive' %>
+
+                  <% if property.images.attached? %>
+                    <% property.images.each_with_index do |image, index| %>
+                      <% if index.zero? %>
+                        <%= image_tag image, class: 'img-responsive' %>
+                      <% end %>
+                    <% end %>
+                  <% else %>
+                    <!-- Manejo si no hay imágenes adjuntas -->
+                    <p>No hay imágenes adjuntas para esta propiedad.</p>
+                  <% end %>
+
                   <span class="property--status"><%= property.type_offer.name %></span>
                 </a>
               </div>
@@ -162,7 +173,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- agent #3 -->
       <div class="col-xs-12 col-sm-4 col-md-4">
         <div class="agent">

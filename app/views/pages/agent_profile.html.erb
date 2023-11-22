@@ -83,7 +83,20 @@
           <% @properties.each do |property| %>
           <div class="property-item">
             <div class="property--img">
-              <%= image_tag property.photo, class: 'img-responsive', alt:"property image" %>
+
+
+
+                  <% if property.images.attached? %>
+                    <% property.images.each_with_index do |image, index| %>
+                      <% if index.zero? %>
+                        <%= image_tag image, class: 'img-responsive' %>
+                      <% end %>
+                    <% end %>
+                  <% else %>
+                    <!-- Manejo si no hay imágenes adjuntas -->
+                    <p>No hay imágenes adjuntas para esta propiedad.</p>
+                  <% end %>
+
               <span class="property--status"><%= property.type_offer.name %></span>
             </div>
             <div class="property--content">

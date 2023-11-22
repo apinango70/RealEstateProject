@@ -28,6 +28,8 @@ class Property < ApplicationRecord
   belongs_to :type_property
   # Relacion 1:1 con photo
   has_one_attached :photo
+  #Fotos de la propiedad
+  has_many_attached :images
   # Relacion n:n con features
   has_many :property_features, dependent: :destroy
   has_many :features, through: :property_features

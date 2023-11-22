@@ -1,4 +1,3 @@
-# rails runner 'load(File.join(Rails.root, "db", "seeds", "rb", "properties.rb"))'
 puts 'Importing 20 properties...'
 
 # Obtén todos los usuarios con el rol "agent"
@@ -6,7 +5,7 @@ agent_users = User.where(role: 'agent')
 
 20.times do
   # Obtén una lista de todas las imágenes en la carpeta app/assets/images/properties
-  image_filenames = Dir.glob(Rails.root.join('app', 'assets', 'images', 'properties', '*.jpg'))
+  image_filenames = Dir.glob(Rails.root.join('app', 'assets', 'images', 'properties', '*.jpg')).sample(4)
 
   property = Property.new(
     user_id: agent_users.sample.id, # Selecciona un usuario "agent" aleatorio
@@ -26,13 +25,12 @@ agent_users = User.where(role: 'agent')
     sale_or_rent_price: rand(50000..1000000) # Precio en dólares
   )
 
-  # Selecciona un archivo de imagen aleatorio de la carpeta
-  image_path = image_filenames.sample
-
-  # Adjunta la imagen a la propiedad utilizando Active Storage
-  property.photo.attach(io: File.open(image_path), filename: File.basename(image_path))
+  # Adjunta las imágenes a la propiedad utilizando Active Storage
+  image_filenames.each do |image_path|
+    property.images.attach(io: File.open(image_path), filename: File.basename(image_path))
+  end
 
   property.save!
 end
 
-puts '20 properties successfully created with random photos and assigned to agent users!'
+puts '20 properties successfully created with 4 random photos each and assigned to agent users!'

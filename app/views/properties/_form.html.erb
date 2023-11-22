@@ -72,7 +72,7 @@
                                   <%= form.label :floors, style: "display: block" %>
                                   <%= form.text_field :floors, class:"form-control" %>
                                 </div>
-                            </div> 
+                            </div>
 
 
                             <div class="col-xs-12 col-sm-4 col-md-4">
@@ -82,14 +82,14 @@
                                 </div>
                             </div>
 
- 
+
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                   <%= form.label :area, style: "display: block" %>
                                   <%= form.text_field :area, class:"form-control", placeholder:"sq ft" %>
                                 </div>
                             </div>
- 
+
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                   <%= form.label "Sale or rent price*", style: "display: block" %>
@@ -127,12 +127,17 @@
                             <h4 class="form--title">Property Gallery</h4>
                           </div>
                           <div class="col-xs-12 col-sm-4 col-md-12">
-                            <% if property.photo.attached? %>
-                              <%= image_tag property.photo, class: 'mb-2', style: 'max-width: 200px;' %><br>
+
+                            <% if property.images.attached? %>
+                              <% @property.images.each do |image| %>
+                                <%= image_tag image, class: 'mb-2', style: 'max-width: 200px;' %>
+                              <% end %>
                             <% end %>
+
                             <div class="mb-4">
-                              <%= form.file_field :photo, class:'form-control' %>
+                              <%= form.file_field :images, multiple: true, class:'form-control', accept: 'image/*' %>
                             </div>
+                          </div>
                           </div>
                         </div>
                       </div>
@@ -166,7 +171,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <%= form.submit "Save Edits", class: "btn btn--primary" %>
                 </form>
             </div>
