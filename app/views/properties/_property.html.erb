@@ -74,8 +74,11 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
               <div class="property-single-carousel-content">
                 <div class="carousel carousel-thumbs slider-navs" data-slide="1" data-slide-res="1" data-autoplay="true" data-thumbs="true" data-nav="true" data-dots="false" data-space="30" data-loop="true" data-speed="800" data-slider-id="1">
-                  <%= image_tag property.photo %>
-                  <%= image_tag "properties/slider/2.jpg" %>
+
+                  <% @property.images.each do |image| %>
+                    <%= image_tag image.firs, class: 'img-responsive' %>
+                  <% end %>
+
                 </div>
               </div>
             </div>
@@ -193,7 +196,7 @@
               <%= link_to "Edit this property", edit_property_path(property) %> |
               <%= link_to "Back to properties", list_properties_path %>
 
-              <%= button_to "Destroy this property", property, method: :delete %>>
+              <%= button_to "Destroy this property", property, method: :delete %>
               </div>
             </div>
           </div>

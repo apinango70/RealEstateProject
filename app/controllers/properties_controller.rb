@@ -85,7 +85,8 @@ class PropertiesController < ApplicationController
                                         :area,
                                         :sale_or_rent_price,
                                         :photo,
-                                        feature_ids: []
+                                        feature_ids: [],
+                                        images: []
                                         )
     end
 end
